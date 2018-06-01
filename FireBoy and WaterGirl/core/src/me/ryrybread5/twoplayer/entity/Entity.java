@@ -59,7 +59,7 @@ public abstract class Entity extends Game{
 			{
 				
 	
-				//this.pos.y=(float) Math.floor(pos.y);//if they his ground while falling sets any number down not up like 5.9 to 5
+				this.pos.y=(float) Math.floor(pos.y);//if they his ground while falling sets any number down not up like 5.9 to 5
 				grounded=true;
 				
 				

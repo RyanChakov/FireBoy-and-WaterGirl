@@ -119,8 +119,8 @@ public class Player extends Entity {
 
 				map.dead=true;
 			}
-			font.draw(batch,String.valueOf(m.scoreE) , 10, 1050);
-			font.draw(batch,String.valueOf(m.scoreP) , 1550, 1050);
+			font.draw(batch,String.valueOf(m.scoreP) , 10, 1050);
+			font.draw(batch,String.valueOf(m.scoreE) , 1550, 1050);
 			font.draw(batch,timer , 100, 100);
 			time();
 			if(right==true)

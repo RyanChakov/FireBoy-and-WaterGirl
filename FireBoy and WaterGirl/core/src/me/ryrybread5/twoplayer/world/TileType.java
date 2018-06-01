@@ -7,7 +7,7 @@ public enum TileType {
 	GRASS(1, true,false, "Grass"),
 	DIRT(2, true,false, "Dirt"),
 	SKY(3, false,false, "Sky"),
-	LAVA(4, false,false, "Lava"),
+	LAVA(23, false,false, "Lava"),
 	CLOUD(5, false,false, "Cloud"),
 	STONE(6, true,false, "Stone"),
 	WALL(7, false,false, "Wall"),
@@ -17,8 +17,7 @@ public enum TileType {
 	DOORBLUE(13, true,true, "DoorBlue"),
 	CHESTBLUE(9, true,true, "ChestBlue"),
 	CHESTPURPLE(10, true,true, "ChestPurple"),
-	LAVAA(70, false,false, "Lava"),
-	COINS(59, false,true, "Coin");
+	LAVAA(14, false,false, "Lava");
 
 public static final int TILE_SIZE= 16;
 	private int id;

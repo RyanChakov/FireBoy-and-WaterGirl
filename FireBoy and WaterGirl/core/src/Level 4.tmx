@@ -2,23 +2,14 @@
 <map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="99" height="69" tilewidth="16" tileheight="16" infinite="0" nextobjectid="29">
  <tileset firstgid="1" name="Tiles" tilewidth="16" tileheight="16" tilecount="10" columns="10">
   <image source="tiles.png" width="160" height="16"/>
-  <terraintypes>
-   <terrain name="yup" tile="1"/>
-   <terrain name="new" tile="1"/>
-  </terraintypes>
-  <tile id="0" terrain="1,1,1,1"/>
-  <tile id="1" terrain="1,1,1,1">
+  <tile id="1">
    <objectgroup draworder="index">
     <object id="8" x="0" y="0"/>
     <object id="9" x="16" y="16"/>
    </objectgroup>
   </tile>
-  <tile id="2" terrain="1,1,1,1"/>
-  <tile id="3" terrain="1,1,1,1"/>
-  <tile id="4" terrain="1,1,1,1"/>
-  <tile id="5" terrain="1,1,1,1" probability="20"/>
-  <tile id="6" terrain="1,1,1,1"/>
-  <tile id="7" terrain="1,1,1,1" probability="0">
+  <tile id="5" probability="20"/>
+  <tile id="7" probability="0">
    <objectgroup draworder="index"/>
   </tile>
  </tileset>
