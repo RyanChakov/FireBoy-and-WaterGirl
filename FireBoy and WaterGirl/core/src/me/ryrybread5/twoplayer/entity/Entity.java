@@ -57,8 +57,12 @@ public abstract class Entity extends Game{
 		{
 			if(velocityY<0) //when hits ground
 			{
-				this.pos.y=(float) Math.floor(pos.y);//if they his ground while falling sets any number down not up like 5.9 to 5
+				
+	
+				//this.pos.y=(float) Math.floor(pos.y);//if they his ground while falling sets any number down not up like 5.9 to 5
 				grounded=true;
+				
+				
 			}
 			if(map.interact && Gdx.input.isKeyJustPressed(Keys.E))
 			{
@@ -116,6 +120,7 @@ public abstract class Entity extends Game{
 		}
 		else
 		{
+			
 			this.pos.y=newY;
 			grounded=false;
 		}

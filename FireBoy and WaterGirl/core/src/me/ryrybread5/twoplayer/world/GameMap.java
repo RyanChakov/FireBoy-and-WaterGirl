@@ -79,6 +79,7 @@ public abstract class GameMap extends Game implements Screen{
 	public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 	public boolean doesrectcollideWithMap(float x, float y, int width, int height)
 	{
+	
 		if(x<0 || y<0|| x+width > getPixelWidth()|| y+ height > getPixelHeight())
 		{
 			return true;
@@ -87,6 +88,7 @@ public abstract class GameMap extends Game implements Screen{
 		{
 			for(int col=(int) (x/TileType.TILE_SIZE); col<Math.ceil((x+width)/ TileType.TILE_SIZE); col++) 
 			{
+				
 				for(int layer=0; layer<getLayers(); layer++)
 				{
 					TileType type = getTileTypeByCoordinate(layer,col,row);
@@ -113,14 +115,6 @@ public abstract class GameMap extends Game implements Screen{
 							next=true;
 
 						}
-						else if(type==type.COINS)
-						{
-
-							
-
-
-						}
-
 					}
 				}
 			}
@@ -145,12 +139,7 @@ public abstract class GameMap extends Game implements Screen{
 		for(int c=0; c<count; c++)
 		{
 			//SET VISABLITY HERE
-			System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-			System.out.println(x);
-			System.out.println(TiledGameMap.character[c].getX());
-			System.out.println(y);
-			System.out.println(TiledGameMap.character[c].getY());
-			System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+			
 			if((TiledGameMap.character[c].isVisible())&&(x>TiledGameMap.character[c].getX() && x<TiledGameMap.character[c].getX()+16) && (y==TiledGameMap.character[c].getY() ))
 			{
 				
