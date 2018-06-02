@@ -12,13 +12,13 @@ import me.ryrybread5.twoplayer.entity.Player;
 import me.ryrybread5.twoplayer.world.GameMap;
 import me.ryrybread5.twoplayer.world.TiledGameMap;
 
-public class t extends TiledGameMap implements Screen {
+public class A extends TiledGameMap implements Screen {
 	final Screenrun game;
 	Adventure s = new Adventure();
 	TiledGameMap ts= new TiledGameMap();
 	OrthographicCamera camera;
 	BitmapFont	font = new BitmapFont();
-	public t(final Screenrun screenrun) {
+	public A(final Screenrun screenrun) {
 		game = screenrun;
 
 		camera = new OrthographicCamera();

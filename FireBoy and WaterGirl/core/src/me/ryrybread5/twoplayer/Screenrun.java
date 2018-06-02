@@ -6,8 +6,9 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import me.ryrybread5.twoplayer.settings.MainMenuSample;
 import me.ryrybread5.twoplayer.settings.Rig;
-import me.ryrybread5.twoplayer.settings.t;
 import me.ryrybread5.twoplayer.world.GameMap;
 
 public class Screenrun extends Game {
@@ -34,7 +35,7 @@ public class Screenrun extends Game {
 		{
 			System.out.println("HOPE NOT BROKEN");
 			//dispose();
-			this.setScreen(new t(this));
+			this.setScreen(new MainMenuSample(this));
 		}
 	}
 
