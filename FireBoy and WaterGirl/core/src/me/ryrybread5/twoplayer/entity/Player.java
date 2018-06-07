@@ -19,7 +19,7 @@ public class Player extends Entity {
 	Enemy posit; 
 
 	protected TiledGameMap m;
-	static float totalTime = 3 * 60; 
+	public static float totalTime = 0; 
 	private static final int SPEED =80;
 	private static final int JUMP_VELOCITY =5;
 	private boolean left,right;
@@ -62,12 +62,12 @@ public class Player extends Entity {
 	{
 		
 
-		if((Gdx.input.isKeyPressed(Keys.SPACE) || Gdx.input.isKeyPressed(Keys.W) )&& grounded)
+		if(Gdx.input.isKeyPressed(Keys.W)&& grounded)
 		{
 			this.velocityY += JUMP_VELOCITY * getWeight();
 			jump.play();
 		}
-		else if((Gdx.input.isKeyPressed(Keys.SPACE) || Gdx.input.isKeyPressed(Keys.W) ) && !grounded && this.velocityY>0)// jump higher longer hold
+		else if(Gdx.input.isKeyPressed(Keys.W) && !grounded && this.velocityY>0)// jump higher longer hold
 		{
 			this.velocityY += JUMP_VELOCITY * getWeight() * deltaTime;
 		}
@@ -99,7 +99,7 @@ public class Player extends Entity {
 	public String time() {
 		float eltaTime = Gdx.graphics.getDeltaTime(); //You might prefer getRawDeltaTime()
 
-		totalTime -= eltaTime; //if counting down
+		totalTime += eltaTime; //if counting down
 
 		int minutes = ((int)totalTime) / 60;
 		int seconds = ((int)totalTime) % 60;
@@ -114,13 +114,9 @@ public class Player extends Entity {
 		if(!map.dead)
 		{
 			String timer=time();
-			if(timer.equals("0:0"))
-			{
-
-				map.dead=true;
-			}
+			
 			font.draw(batch,String.valueOf(m.scoreP) , 10, 1050);
-			font.draw(batch,String.valueOf(m.scoreE) , 1550, 1050);
+			
 			font.draw(batch,timer , 100, 100);
 			time();
 			if(right==true)
@@ -145,16 +141,10 @@ public class Player extends Entity {
 
 		else if(map.dead && temp==x-1)
 		{
-			int trye=	JOptionPane.showConfirmDialog(null,"Do you want to try again?", "You Died :(", JOptionPane.YES_NO_OPTION);
-			if(trye==0)
-			{
-				retry();
-				map.dead=false;
-			}
-			else
-			{
+			JOptionPane.showMessageDialog(null, "You Died :(");
+		
 				System.exit(0);
-			}
+			
 		}
 		else if(map.dead)
 		{

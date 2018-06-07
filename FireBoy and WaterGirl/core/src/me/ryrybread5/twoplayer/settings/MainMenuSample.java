@@ -66,6 +66,7 @@ public class MainMenuSample extends Game implements Screen {
 	Adventure s = new Adventure();
 	TiledGameMap ts= new TiledGameMap();
 	OrthographicCamera camera;
+	
 	Skin skin=new Skin();
 	public MainMenuSample(final Screenrun screenrun) {
 		game = screenrun;
@@ -123,27 +124,46 @@ public class MainMenuSample extends Game implements Screen {
 		cbs.font.getData().setScale(2, 2);
 		cbs.fontColor = Color.WHITE;
 		checkbox = new CheckBox("FullScreen", cbs);
-		checkbox2 = new CheckBox("Windowed FullScreen", cbs);
+		
+		checkbox2 = new CheckBox("Borderless FullScreen", cbs);
 		checkbox2.setPosition(checkbox.getX(), checkbox.getY()+checkbox.getHeight());
-		checkbox2.setPosition(checkbox2.getX(), checkbox2.getY()+checkbox2.getHeight());
+		
 		checkbox3 = new CheckBox("Windowed", cbs);
+		checkbox3.setPosition(checkbox2.getX(), checkbox2.getY()+checkbox2.getHeight());
 		bg = new ButtonGroup();
 		bg.add(checkbox, checkbox2, checkbox3);
 		bg.setUncheckLast(true);
 		bg.setMaxCheckCount(1);
+		
 		bg.setMinCheckCount(0);
 		float checkBoxX = middlepointX-60;
 		checkbox.setPosition(checkBoxX, middlepointY-50);
 		checkbox2.setPosition(checkBoxX, checkbox.getY()-checkbox2.getHeight());
 		checkbox3.setPosition(checkBoxX, checkbox2.getY()-checkbox3.getHeight()); 
 		//Checkbox - interaction
+		checkbox3.addListener(new ChangeListener() {
+		    @Override
+		    public void changed (ChangeEvent event, Actor actor) {
+		     
+		    	   if(bg.getCheckedIndex()==2)
+			       {
+		    		   System.out.println("SD");
+		    		   Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+		    		  System.setProperty("org.lwjgl.opengl.Window.undecorated", "false");
+		    		   
+		    		   Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		    		
+			       }
+		    }
+		});
 		checkbox.addListener(new ChangeListener() {
 		    @Override
 		    public void changed (ChangeEvent event, Actor actor) {
 		     
 		       if(bg.getCheckedIndex()==0)
 		       {
-		    	   System.out.println("FULLSCREEN");
+		    	   System.out.println("D");
+		    	   Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 		       }
 		    }
 		});
@@ -154,21 +174,15 @@ public class MainMenuSample extends Game implements Screen {
 		     
 		    	   if(bg.getCheckedIndex()==1)
 			       {
-			    	   System.out.println("WINDOWED F");
+		    		   System.out.println("SsD");
+		    		   Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+		    		   System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
+		    		   Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			       }
 		    }
 		});
 		
-		checkbox3.addListener(new ChangeListener() {
-		    @Override
-		    public void changed (ChangeEvent event, Actor actor) {
-		     
-		    	   if(bg.getCheckedIndex()==2)
-			       {
-			    	   System.out.println("WINDOW");
-			       }
-		    }
-		});
+		
 		
 		
 
@@ -210,10 +224,11 @@ public class MainMenuSample extends Game implements Screen {
 
 		// Adds created table to stage
 		stage.addActor(table);
+		checkbox.setChecked(false);
+		
+		stage.addActor(checkbox3);
 		stage.addActor(checkbox);
 		stage.addActor(checkbox2);
-		stage.addActor(checkbox3);
-
 		// To make the table appear smoothly
 		table.addAction(fadeIn(1f));
 

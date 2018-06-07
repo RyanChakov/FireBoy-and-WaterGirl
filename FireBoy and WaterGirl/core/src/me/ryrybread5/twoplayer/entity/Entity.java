@@ -27,11 +27,12 @@ public abstract class Entity extends Game{
 	public EntityType type;
 	protected TileType tile;
 	protected Adventure t;
-	
+
 	protected Window sc= new Window();
 	Sound tele,ches,doo;
 	protected float velocityY=0; // Y velocity
 	protected GameMap map;
+	protected static Player y;
 	protected TiledGameMap m; //for collisons
 	protected boolean grounded=false;
 	protected int level=1,pis=0;
@@ -51,20 +52,20 @@ public abstract class Entity extends Game{
 
 		this.velocityY+=gravity*deltaTime * getWeight();
 		newY+= this.velocityY * deltaTime;
-		
-		
+
+
 		if(map.doesrectcollideWithMap(pos.x, newY, getWidth(), getHeight()))
 		{
 			if(velocityY<0) //when hits ground
 			{
-				
-	
+
+
 				this.pos.y=(float) Math.floor(pos.y);//if they his ground while falling sets any number down not up like 5.9 to 5
 				grounded=true;
-				
-				
+
+
 			}
-			if(map.interact && Gdx.input.isKeyJustPressed(Keys.E))
+			if(map.interact && (Gdx.input.isKeyJustPressed(Keys.E) ||Gdx.input.isKeyJustPressed(Keys.ENTER)))
 			{
 				if(map.t==tile.CHEST || map.t==tile.CHESTBLUE || map.t==tile.CHESTPURPLE)
 				{
@@ -90,9 +91,10 @@ public abstract class Entity extends Game{
 
 
 			}
-			if(map.next&& map.interact&& Gdx.input.isKeyPressed(Keys.P) || Gdx.input.isKeyJustPressed(Keys.P))
+			if(map.next&& map.interact&& (Gdx.input.isKeyPressed(Keys.R) || Gdx.input.isKeyPressed(Keys.P))||(Gdx.input.isKeyPressed(Keys.R) || Gdx.input.isKeyPressed(Keys.P)))
 			{
 
+				y.totalTime=0;
 				if(level==1)
 					level=2;
 				else if(level==2)
@@ -101,16 +103,19 @@ public abstract class Entity extends Game{
 					level=4;
 				nextLevel();
 
-				if(type==type.ENEMY)
+
+				if(type==type.PLAYER)
 				{
-					pos.x=1540;
-					System.out.println("DONE");
-				}
-				else if(type==type.PLAYER)
-				{
-					pos.x=40;
+					this.pos.x=40;
+
 					System.out.println("YUP");
 				}
+				else
+				{
+					this.pos.x=1540;
+				System.out.println("DONE");
+				}
+
 
 				tele.play();
 				pos.y=400;
@@ -120,17 +125,12 @@ public abstract class Entity extends Game{
 		}
 		else
 		{
-			
+
 			this.pos.y=newY;
 			grounded=false;
 		}
 
-		if(Gdx.input.isKeyJustPressed(Keys.SHIFT_LEFT)|| Gdx.input.isKeyJustPressed(Keys.SHIFT_RIGHT))
-		{
 
-
-		}
-		
 
 	}
 	public abstract void render(SpriteBatch batch);

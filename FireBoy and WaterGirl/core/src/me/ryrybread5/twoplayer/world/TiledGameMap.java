@@ -36,7 +36,7 @@ public class TiledGameMap extends GameMap {
 	public static float volume=.3f;
 	public static Music [] levels= new Music[5];
 
-	public static TextureMapObject [] character= new TextureMapObject[10];
+	public static TextureMapObject [] character= new TextureMapObject[16];
 	public TiledGameMap()
 	{
 
@@ -72,6 +72,7 @@ public class TiledGameMap extends GameMap {
 
 				for(Cvalue=0; Cvalue<count; Cvalue++)
 				{
+					
 					if(character[Cvalue]==null||character[Cvalue].isVisible())
 					{
 						character[Cvalue] = (TextureMapObject)tiledMap.getLayers().get("Coins Boy").getObjects().get(Cvalue);

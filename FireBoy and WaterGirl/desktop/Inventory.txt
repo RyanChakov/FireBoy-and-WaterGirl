@@ -1,5 +1,4 @@
-Balloon Sword,
 Iron Sword,
-Double Jump Boots,
-Light Pants,
-Balloon Sword,
+Heavy Boots,
+One Hit Kill Sword,
+Heavy Boots,

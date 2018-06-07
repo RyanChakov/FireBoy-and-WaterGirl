@@ -1,19 +1,16 @@
 package me.ryrybread5.twoplayer.entity;
 
-
-
-
 import javax.swing.JOptionPane;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 import me.ryrybread5.twoplayer.Adventure;
 import me.ryrybread5.twoplayer.world.GameMap;
-
 
 
 public class Enemy extends Entity {
@@ -27,6 +24,7 @@ public class Enemy extends Entity {
 	Texture [] imageL= new Texture[5];
 	Texture [] imageS= new Texture[5];
 	Adventure g = new Adventure();
+	BitmapFont font = new BitmapFont();
 	public boolean rooms=false;
 	int ran=0;
 	Player p;
@@ -59,7 +57,7 @@ public class Enemy extends Entity {
 	@Override
 	public void update(float deltaTime, float gravity) 
 	{
-
+		
 		if((Gdx.input.isKeyPressed(Keys.UP))&& grounded)
 		{
 			this.velocityY += JUMP_VELOCITY * getWeight();
@@ -97,7 +95,8 @@ public class Enemy extends Entity {
 	@Override
 	public void render(SpriteBatch batch) 
 	{
-		
+		map.doesCollideWithCoinE(pos.x, pos.y, m.count, batch);
+		font.draw(batch,String.valueOf(m.scoreE) , 1550, 1050);
 		x++;
 		
 		if(!map.dead)
@@ -123,16 +122,9 @@ public class Enemy extends Entity {
 		}
 		else if(map.dead && temp==x-1)
 		{
-			int trye=	JOptionPane.showConfirmDialog(null,"Do you want to try again?", "You Died :(", JOptionPane.YES_NO_OPTION);
-			if(trye==0)
-			{
-				retry();
-				map.dead=false;
-			}
-			else
-			{
-				System.exit(0);
-			}
+			JOptionPane.showMessageDialog(null, "You Died :(");
+			
+			System.exit(0);
 		}
 		else if(map.dead)
 		{

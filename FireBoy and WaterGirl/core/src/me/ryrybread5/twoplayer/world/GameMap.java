@@ -79,7 +79,7 @@ public abstract class GameMap extends Game implements Screen{
 	public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 	public boolean doesrectcollideWithMap(float x, float y, int width, int height)
 	{
-	
+
 		if(x<0 || y<0|| x+width > getPixelWidth()|| y+ height > getPixelHeight())
 		{
 			return true;
@@ -88,7 +88,7 @@ public abstract class GameMap extends Game implements Screen{
 		{
 			for(int col=(int) (x/TileType.TILE_SIZE); col<Math.ceil((x+width)/ TileType.TILE_SIZE); col++) 
 			{
-				
+
 				for(int layer=0; layer<getLayers(); layer++)
 				{
 					TileType type = getTileTypeByCoordinate(layer,col,row);
@@ -139,20 +139,26 @@ public abstract class GameMap extends Game implements Screen{
 		for(int c=0; c<count; c++)
 		{
 			//SET VISABLITY HERE
-			
-			if((TiledGameMap.character[c].isVisible())&&(x>TiledGameMap.character[c].getX() && x<TiledGameMap.character[c].getX()+16) && (y==TiledGameMap.character[c].getY() ))
-			{
-				
-				TiledGameMap.character[c].setVisible(false);
-				scoreP++;
-			}
-			else 
-			{
-				if((TiledGameMap.character[c].isVisible()))
-					batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
-				//batch.draw(TiledGameMap.character[c].getTextureRegion(), 0, 0);
-				//	batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
 
+			if(TiledGameMap.character[c].getProperties().get("type").equals("Player"))
+			{
+
+
+
+				if((TiledGameMap.character[c].isVisible())&&(x>TiledGameMap.character[c].getX() && x<TiledGameMap.character[c].getX()+16) && (y==TiledGameMap.character[c].getY() ))
+				{
+
+					TiledGameMap.character[c].setVisible(false);
+					scoreP++;
+				}
+				else 
+				{
+					if((TiledGameMap.character[c].isVisible()))
+						batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
+					//batch.draw(TiledGameMap.character[c].getTextureRegion(), 0, 0);
+					//	batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
+
+				}
 			}
 		}
 
@@ -164,20 +170,22 @@ public abstract class GameMap extends Game implements Screen{
 		for(int c=0; c<count; c++)
 		{
 			//SET VISABLITY HERE
-			
-			if((TiledGameMap.character[c].isVisible())&&(x>TiledGameMap.character[c].getX() && x<TiledGameMap.character[c].getX()+16) && (y==TiledGameMap.character[c].getY() ))
+			if(TiledGameMap.character[c].getProperties().get("type").equals("Enemy"))
 			{
-				System.out.println("HER I PRESUME");
-				TiledGameMap.character[c].setVisible(false);
-				scoreE++;
-			}
-			else 
-			{
-				if((TiledGameMap.character[c].isVisible()))
-					batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
-				//batch.draw(TiledGameMap.character[c].getTextureRegion(), 0, 0);
-				//	batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
+				if((TiledGameMap.character[c].isVisible())&&(x>TiledGameMap.character[c].getX() && x<TiledGameMap.character[c].getX()+16) && (y==TiledGameMap.character[c].getY() ))
+				{
+					System.out.println("HER I PRESUME");
+					TiledGameMap.character[c].setVisible(false);
+					scoreE++;
+				}
+				else 
+				{
+					if((TiledGameMap.character[c].isVisible()))
+						batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
+					//batch.draw(TiledGameMap.character[c].getTextureRegion(), 0, 0);
+					//	batch.draw(ty.character[c].getTextureRegion(), ty.character[c].getX(), ty.character[c].getY());
 
+				}
 			}
 		}
 

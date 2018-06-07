@@ -18,7 +18,7 @@ public class Rig implements Screen {
 
 		
 	OrthographicCamera camera;
-	Texture p=new Texture("perfect.png");
+	Texture p=new Texture("Perfect.png");
 	TextureRegion[][] tmp = new TextureRegion(p).split(p.getWidth() / 1,   p.getHeight() / 3);
 	BitmapFont	font = new BitmapFont();
 	public Rig(final Screenrun screenrun) {
