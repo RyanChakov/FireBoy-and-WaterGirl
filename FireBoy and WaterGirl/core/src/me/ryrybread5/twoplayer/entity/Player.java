@@ -1,8 +1,13 @@
 package me.ryrybread5.twoplayer.entity;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+
+import com.aidanmurphey.scoremanager.ApiResponse;
+import com.aidanmurphey.scoremanager.Record;
+import com.aidanmurphey.scoremanager.ScoreManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Sound;
@@ -10,6 +15,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import me.ryrybread5.twoplayer.Inventory.ItemType;
+import me.ryrybread5.twoplayer.settings.LeaderBoard;
 import me.ryrybread5.twoplayer.world.GameMap;
 import me.ryrybread5.twoplayer.world.TiledGameMap;
 
@@ -17,7 +23,7 @@ import me.ryrybread5.twoplayer.world.TiledGameMap;
 public class Player extends Entity {
 	private static Scanner a;
 	Enemy posit; 
-
+LeaderBoard l= new LeaderBoard();
 	protected TiledGameMap m;
 	public static float totalTime = 0; 
 	private static final int SPEED =80;
@@ -29,11 +35,15 @@ public class Player extends Entity {
 	Texture [] imageL= new Texture[5];
 	Texture [] imageS= new Texture[5];
 	ItemType item;
+	
 	public boolean room= false;
 	Sound jump;
 
 	public Player(float x, float y, GameMap map) {
 		super(x, y, EntityType.PLAYER, map);
+
+		
+		
 
 		imageL[0]= new Texture("StillLeft.png");
 		imageL[1]= new Texture("Left 1.png");
@@ -60,7 +70,7 @@ public class Player extends Entity {
 	@Override
 	public void update(float deltaTime, float gravity) 
 	{
-		
+
 
 		if(Gdx.input.isKeyPressed(Keys.W)&& grounded)
 		{
@@ -114,9 +124,9 @@ public class Player extends Entity {
 		if(!map.dead)
 		{
 			String timer=time();
-			
+
 			font.draw(batch,String.valueOf(m.scoreP) , 10, 1050);
-			
+
 			font.draw(batch,timer , 100, 100);
 			time();
 			if(right==true)
@@ -141,10 +151,8 @@ public class Player extends Entity {
 
 		else if(map.dead && temp==x-1)
 		{
-			JOptionPane.showMessageDialog(null, "You Died :(");
-		
-				System.exit(0);
-			
+			l.sendit(m.scoreP);
+
 		}
 		else if(map.dead)
 		{
@@ -171,12 +179,12 @@ public class Player extends Entity {
 
 					if((tItem.trim()).equals(test[p].getId()))
 					{
-						
+
 						float nweight=type.getWeight()+test[p].getWeight();
 						if(nweight<5)
 							nweight=7;
 						type.setWeight(nweight);
-					
+
 						break;
 					}
 
@@ -186,7 +194,7 @@ public class Player extends Entity {
 
 
 			}
-			
+
 			a.close();
 		}
 		catch (Exception e)

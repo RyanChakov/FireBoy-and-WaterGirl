@@ -22,7 +22,7 @@ import me.ryrybread5.twoplayer.world.TiledGameMap;
 public abstract class Entity extends Game{
 
 	protected Vector2 pos;
-
+public static int extra=0;
 	//Keeps track of x and y and lots of math stuffs
 	public EntityType type;
 	protected TileType tile;
@@ -93,6 +93,18 @@ public abstract class Entity extends Game{
 			}
 			if(map.next&& map.interact&& (Gdx.input.isKeyPressed(Keys.R) || Gdx.input.isKeyPressed(Keys.P))||(Gdx.input.isKeyPressed(Keys.R) || Gdx.input.isKeyPressed(Keys.P)))
 			{
+if(y.totalTime<30 && level==1)
+{
+	extra+=(30-y.totalTime);
+}
+if(y.totalTime<70 && level==2)
+{
+	extra+=(70-y.totalTime);
+}
+if(y.totalTime<80 && level==3)
+{
+	extra+=(80-y.totalTime);
+}
 
 				y.totalTime=0;
 				if(level==1)
